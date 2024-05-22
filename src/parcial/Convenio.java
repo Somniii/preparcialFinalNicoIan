@@ -15,9 +15,9 @@ public class Convenio {
     public double getPrecioConvenio() {
         return precioConvenio;
     }
-
+    //Lo hago asi porque sino me parece raro
     public void setPrecioConvenio(double precioConvenio) {
-        this.precioConvenio = precioConvenio;
+        this.precioConvenio = calculaPrecioConvenio();
     }
 
     public PrestadorMedico getPrestador() {
@@ -26,5 +26,8 @@ public class Convenio {
 
     public void setPrestador(PrestadorMedico prestador) {
         this.prestador = prestador;
+    }
+    public double calculaPrecioConvenio() {
+        return prestador.getPrecioPractica() + 5000;
     }
 }

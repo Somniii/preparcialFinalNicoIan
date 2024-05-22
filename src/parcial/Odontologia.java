@@ -2,7 +2,9 @@ package parcial;
 
 public class Odontologia implements OrdenDeConsulta{
     private String estadoAuditoria;
-    private  double facturacion;
+    //No se si dejar fijo el precio de facturacion o hacer que una variable que le da valor
+    //Lo dejo asi porque ahora es mas flexible , sino cambiar.
+    private double  facturacion = 1000;
 
     public Odontologia() {
     }
@@ -27,4 +29,8 @@ public class Odontologia implements OrdenDeConsulta{
     public void setFacturacion(double facturacion) {
         this.facturacion = facturacion;
     }
+    public double calcularCosto(Convenio conv){
+        return conv.getPrecioConvenio()+facturacion;
+    }
+
 }

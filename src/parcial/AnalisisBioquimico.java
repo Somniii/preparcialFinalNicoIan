@@ -2,7 +2,7 @@ package parcial;
 
 public class AnalisisBioquimico implements OrdenDeConsulta{
     private String estadoAuditoria;
-    private  double facturacion;
+    private  double facturacion = 50;
     private int unidadesBioquimicas;
 
     public AnalisisBioquimico() {
@@ -37,4 +37,8 @@ public class AnalisisBioquimico implements OrdenDeConsulta{
     public void setUnidadesBioquimicas(int unidadesBioquimicas) {
         this.unidadesBioquimicas = unidadesBioquimicas;
     }
+    public double calcularCosto(Convenio conv){
+        return conv.getPrecioConvenio()+(unidadesBioquimicas*facturacion);
+    }
+
 }

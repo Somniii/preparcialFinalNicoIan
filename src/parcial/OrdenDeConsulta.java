@@ -1,5 +1,5 @@
 package parcial;
 
 public interface OrdenDeConsulta {
-    public double calcularCosto;
+    public double calcularCosto(Convenio conv);
 }

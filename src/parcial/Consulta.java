@@ -2,7 +2,7 @@ package parcial;
 
 public class Consulta implements  OrdenDeConsulta{
     private String estadoAuditoria;
-    private  double facturacion;
+    private  double facturacion = 500;
 
     public Consulta() {
     }
@@ -27,4 +27,8 @@ public class Consulta implements  OrdenDeConsulta{
     public void setFacturacion(double facturacion) {
         this.facturacion = facturacion;
     }
+    public double calcularCosto(Convenio conv){
+        return conv.getPrecioConvenio()+facturacion;
+    }
+
 }
