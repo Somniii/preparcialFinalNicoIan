@@ -16,7 +16,7 @@ public class Convenio {
         return precioConvenio;
     }
     //Lo hago asi porque sino me parece raro
-    public void setPrecioConvenio(double precioConvenio) {
+    public void setPrecioConvenio() {
         this.precioConvenio = calculaPrecioConvenio();
     }
 
