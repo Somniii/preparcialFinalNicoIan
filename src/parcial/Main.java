@@ -17,6 +17,7 @@ public class Main {
         mostrarTodoAfiliado(a,conv);
         scan.close();
 
+<<<<<<< HEAD
     }
     public static Afiliado verificaAuditoria(Afiliado a, Scanner scan){
         Auditoria auditoria = new Auditoria();
@@ -159,6 +160,27 @@ public class Main {
         System.out.println("PRECIO PRACTICA"+prestador.getPrecioPractica());
         System.out.println("-----------");
         System.out.println("PRECIO TOTAL CONVENIO:"+conv.getPrecioConvenio());
+=======
 
+>>>>>>> 07b4a3283ca70e8226ee9d69274e81ef41b58bae
+
+    }
+    public static void verificaAuditoria(Afiliado a, OrdenDeConsulta orden, Scanner scan){
+        Afiliado aux = a;
+        Auditoria auditoria = new Auditoria();
+        for (int i=0;i<a.getOrden().length;i++){
+            OrdenDeConsulta auxiliar = a.getOrden()[i];
+            if(auxiliar instanceof Consulta){
+                ((Consulta) auxiliar).setEstadoAuditoria("No Requiere");
+            } else if(auxiliar instanceof Odontologia){
+                auditoria.verificarAuditoria(orden, scan);
+            } else if (auxiliar instanceof AnalisisBioquimico){
+                if(((AnalisisBioquimico) auxiliar).getUnidadesBioquimicas()>=10){
+                    auditoria.verificarAuditoria(orden, scan);
+                } else {
+                    ((AnalisisBioquimico) auxiliar).setEstadoAuditoria("No requiere");
+                }
+            }
+        }
     }
 }
