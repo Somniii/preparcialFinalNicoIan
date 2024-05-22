@@ -19,7 +19,7 @@ public class Auditoria {
         this.resultadoAuditoria = resultadoAuditoria;
     }
 
-    public static void verificarAuditoria(OrdenDeConsulta orden, Scanner scan){
+    public void verificarAuditoria(OrdenDeConsulta orden, Scanner scan){
         OrdenDeConsulta aux = orden;
         if( aux instanceof AnalisisBioquimico){
             int opc = 0;

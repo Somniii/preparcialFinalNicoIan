@@ -9,22 +9,26 @@ public class Main {
         Afiliado a = new Afiliado();
 
 
-        public static String verificarAuditoria(Afiliado a){
-            Afiliado aux = a;
-            for (int i=0;i<a.getOrden().length;i++){
-                OrdenDeConsulta auxiliar = a.getOrden()[i];
-                if(auxiliar instanceof Consulta){
-                    ((Consulta) auxiliar).setEstadoAuditoria("Aprobado");
-                } else if(auxiliar instanceof Odontologia){
-                    ((Odontologia) auxiliar).setEstadoAuditoria(verificarAuditoria);
-                } else if (auxiliar instanceof AnalisisBioquimico){
-                    if(((AnalisisBioquimico) auxiliar).getUnidadesBioquimicas()>=10){
-                        ((AnalisisBioquimico) auxiliar).setEstadoAuditoria(verificarAuditoria);
-                    }
+
+
+        scan.close();
+    }
+    public static void verificaAuditoria(Afiliado a, OrdenDeConsulta orden, Scanner scan){
+        Afiliado aux = a;
+        Auditoria auditoria = new Auditoria();
+        for (int i=0;i<a.getOrden().length;i++){
+            OrdenDeConsulta auxiliar = a.getOrden()[i];
+            if(auxiliar instanceof Consulta){
+                ((Consulta) auxiliar).setEstadoAuditoria("No Requiere");
+            } else if(auxiliar instanceof Odontologia){
+                auditoria.verificarAuditoria(orden, scan);
+            } else if (auxiliar instanceof AnalisisBioquimico){
+                if(((AnalisisBioquimico) auxiliar).getUnidadesBioquimicas()>=10){
+                    auditoria.verificarAuditoria(orden, scan);
+                } else {
+                    ((AnalisisBioquimico) auxiliar).setEstadoAuditoria("No requiere");
                 }
             }
         }
-
-        scan.close();
     }
 }
