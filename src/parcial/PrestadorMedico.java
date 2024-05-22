@@ -1,5 +1,7 @@
 package parcial;
 
+import java.util.Scanner;
+
 public class PrestadorMedico {
     private  String nombrePrestador;
     private String tipo;
@@ -46,5 +48,17 @@ public class PrestadorMedico {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public PrestadorMedico crearPrestadorMedico(Scanner scan){
+        System.out.println("Ingrese nombre del prestador");
+        String nombre = scan.nextLine();
+        System.out.println("Ingrese tipo de prestador");
+        String tipo = scan.nextLine();
+        System.out.println("Ingrese la practica del prestador");
+        String practica = scan.nextLine();
+        System.out.println("Ingrese el precio de la practica del prestador");
+        double precioPractica = scan.nextDouble();
+        return  new PrestadorMedico(nombre , practica , precioPractica, tipo);
     }
 }

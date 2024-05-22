@@ -16,18 +16,18 @@ public class Convenio {
         return precioConvenio;
     }
     //Lo hago asi porque sino me parece raro
-    public void setPrecioConvenio() {
-        this.precioConvenio = calculaPrecioConvenio();
+    public void setPrecioConvenio(PrestadorMedico prestador) {
+        this.precioConvenio = calculaPrecioConvenio(prestador);
     }
 
     public PrestadorMedico getPrestador() {
         return prestador;
     }
 
-    public void setPrestador(PrestadorMedico prestador) {
+    public void setPrestador(PrestadorMedico prestadorMedicoAuxiliar) {
         this.prestador = prestador;
     }
-    public double calculaPrecioConvenio() {
-        return prestador.getPrecioPractica() + 5000;
+    public double calculaPrecioConvenio(PrestadorMedico prestadorMedicoAuxiliar) {
+        return prestadorMedicoAuxiliar.getPrecioPractica() + 5000;
     }
 }

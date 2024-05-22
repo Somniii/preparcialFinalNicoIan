@@ -9,11 +9,13 @@ public class Main {
 
         Afiliado a = new Afiliado();
 
-        scan.close();
         a = crearAfiliado(scan);
         a = verificaAuditoria(a,scan);
+        System.out.println("Sale de verificar auditoria");
         Convenio conv = crearConvenio(scan);
+        System.out.println("Sale de verificar convenio");
         mostrarTodoAfiliado(a,conv);
+        scan.close();
 
     }
     public static Afiliado verificaAuditoria(Afiliado a, Scanner scan){
@@ -26,9 +28,10 @@ public class Main {
                 auditoria.verificarAuditoria(auxiliar, scan);
                 ((Odontologia) auxiliar).setEstadoAuditoria(auditoria.getResultadoAuditoria());
             } else if (auxiliar instanceof AnalisisBioquimico){
+                System.out.println("Verificando la aprobacion de la orden de analisis bioquimico");
                 if(((AnalisisBioquimico) auxiliar).getUnidadesBioquimicas()>=10){
                     auditoria.verificarAuditoria(auxiliar, scan);
-                    ((Odontologia) auxiliar).setEstadoAuditoria(auditoria.getResultadoAuditoria());
+                    ((AnalisisBioquimico) auxiliar).setEstadoAuditoria(auditoria.getResultadoAuditoria());
 
                 } else {
                     ((AnalisisBioquimico) auxiliar).setEstadoAuditoria("No requiere");
@@ -66,7 +69,6 @@ public class Main {
         OrdenDeConsulta aux;
         switch (opcion){
             case 1:
-                AnalisisBioquimico analisis = crearAnalisis(scan);
                 aux = crearAnalisis(scan);
 
                 break;
@@ -121,18 +123,21 @@ public class Main {
         System.out.println("APELLIDO:"+afiliado.getApellido());
         System.out.println("DNI:"+afiliado.getDNI());
         System.out.println("CANTIDAD DE ORDENES"+afiliado.getCantidadOrdenMes());
-        mostrarConvenio(conv);
+        //mostrarConvenio(conv);
         System.out.println("FACTURACION TOTAL");
         mostrarOrdenesAfiliado(afiliado, conv);
     }
     public static Convenio crearConvenio(Scanner scan){
         Convenio conv = new Convenio();
-        PrestadorMedico prestadorMedico = crearPrestadorMedico(scan);
-        conv.setPrecioConvenio();
+        PrestadorMedico prestadorMedico = crearPrestadorMedico();
+        System.out.println("Entra a set precio convenio");
+        conv.setPrecioConvenio(prestadorMedico);
+        System.out.println("Pasa del get precio convenio de convenio");
         conv.setPrestador(prestadorMedico);
         return conv;
     }
-    public static PrestadorMedico crearPrestadorMedico(Scanner scan){
+    public static PrestadorMedico crearPrestadorMedico(){
+        Scanner scan = new Scanner(System.in);
         System.out.println("Ingrese nombre del prestador");
         String nombre = scan.nextLine();
         System.out.println("Ingrese tipo de prestador");
@@ -141,8 +146,8 @@ public class Main {
         String practica = scan.nextLine();
         System.out.println("Ingrese el precio de la practica del prestador");
         double precioPractica = scan.nextDouble();
-        PrestadorMedico prestadorMedico = new PrestadorMedico(nombre , practica , precioPractica, tipo);
-        return prestadorMedico;
+        PrestadorMedico prestador = new PrestadorMedico(nombre , practica , precioPractica, tipo);
+        return prestador;
     }
     public static void mostrarConvenio(Convenio conv){
         System.out.println("-----MOSTRANDO TODO EL AFILIADO--------");
